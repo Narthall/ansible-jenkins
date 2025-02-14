@@ -12,17 +12,13 @@ pipeline {
 
         stage('Run Docker Playbook') {
             steps {
-                sh """
-                    ansible-playbook -i inventory.ini playbook-docker.yml
-                """
+                ansiblePlaybook inventory: 'inventory.ini', playbook: 'playbook-docker.yml'
             }
         }
 
         stage('Run Apache Playbook') {
             steps {
-                sh """
-                    ansible-playbook -i inventory.ini playbook-apache.yml
-                """
+                ansiblePlaybook inventory: 'inventory.ini', playbook: 'playbook-apache.yml'
             }
         }
     }
