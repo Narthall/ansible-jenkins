@@ -25,16 +25,5 @@ pipeline {
                 """
             }
         }
-
-        stage('Run Zabbix Playbook') {
-            when {
-                expression { return params.DEPLOY_ZABBIX }
-            }
-            steps {
-                sh """
-                    ansible-playbook -i inventory.ini playbook-zabbix.yml
-                """
-            }
-        }
     }
 }
