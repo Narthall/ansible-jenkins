@@ -6,7 +6,7 @@ pipeline {
             steps {
                 git url: 'https://github.com/Narthall/ansible-jenkins.git',
                     branch: 'main',
-                    credentialsId: 'github-ansible'
+                    credentialsId: 'deploy-ansible'
             }
         }
 
