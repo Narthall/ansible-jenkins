@@ -22,7 +22,7 @@ pipeline {
         stage('Run Docker Playbook') {
             steps {
                 sh """
-                    ansible-playbook -i inventory.ini playbook-docker.yml
+                    /var/lib/jenkins/.local/pipx/venvs/ansible/bin/ansible-playbook -i inventory.ini playbook-docker.yml
                 """
             }
         }
@@ -30,7 +30,7 @@ pipeline {
         stage('Run Apache Playbook') {
             steps {
                 sh """
-                    ansible-playbook -i inventory.ini playbook-apache.yml
+                    /var/lib/jenkins/.local/pipx/venvs/ansible/bin/ansible-playbook -i inventory.ini playbook-apache.yml
                 """
             }
         }
