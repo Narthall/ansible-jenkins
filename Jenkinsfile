@@ -4,12 +4,12 @@ pipeline {
     stages {
         stage('Clonage du depot github') {
             steps {
-                git url: 'https://github.com/dteixeiraef/asible-jenkins.git',
+                git url: 'https://github.com/Narthall/ansible-jenkins.git',
                     branch: 'main',
-                    credentialsId: '1141550'
+                    credentialsId: 'github-ansible'
             }
         }
-        stage('Envoie du script et des conteneurs sur la machine docker') {
+        stage('Envoi du script et des conteneurs sur la machine docker') {
             steps {
                 sh '''
                 ansible-playbook playbook-docker.yml playbook-apache.yml
