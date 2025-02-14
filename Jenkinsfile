@@ -9,11 +9,31 @@ pipeline {
                     credentialsId: 'github-ansible'
             }
         }
-        stage('Envoi du script et des conteneurs sur la machine docker') {
+
+        stage('Run Docker Playbook') {
             steps {
-                sh '''
-                ansible-playbook playbook-docker.yml playbook-apache.yml
-                '''
+                sh """
+                    ansible-playbook -i inventory.ini playbook-docker.yml
+                """
+            }
+        }
+
+        stage('Run Apache Playbook') {
+            steps {
+                sh """
+                    ansible-playbook -i inventory.ini playbook-apache.yml
+                """
+            }
+        }
+
+        stage('Run Zabbix Playbook') {
+            when {
+                expression { return params.DEPLOY_ZABBIX }
+            }
+            steps {
+                sh """
+                    ansible-playbook -i inventory.ini playbook-zabbix.yml
+                """
             }
         }
     }
