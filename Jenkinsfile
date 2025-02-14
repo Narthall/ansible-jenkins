@@ -10,6 +10,15 @@ pipeline {
             }
         }
 
+        stage('Installation Ansible') {
+            steps {
+                sh """
+                    pipx install --include-deps ansible
+                    pipx ensurepath
+                """
+            }
+        }
+
         stage('Run Docker Playbook') {
             steps {
                 sh """
